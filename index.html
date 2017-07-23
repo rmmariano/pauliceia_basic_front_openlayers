@@ -1,76 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
+    <head>
+        <meta charset="utf-8"/>
 
-    <title> Pauliceia's project / Basic OpenLayers page </title>
+        <title> Pauliceia's project / Basic OpenLayers page </title>
 
-    <!-- <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css"> -->
-
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
-
-    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <!-- <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script> -->
-    <!-- <script type="text/javascript" src="https://openlayers.org/en/v4.2.0/build/ol.js"></script> -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="static/lib/jquery/jquery.min.js"></script>
 
 
+        <!-- OpenLayers / CSS -->
+        <link href="static/lib/ol/css/ol.css" type="text/css" rel="stylesheet">
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="static/lib/jquery/jquery.min.js"></script>
-
-
-    <!-- OpenLayers / CSS -->
-    <link href="static/lib/ol/css/ol.css" type="text/css" rel="stylesheet">
-
-    <!-- OpenLayers / JS -->
-    <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
-    <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
-    <script type="text/javascript" src="static/lib/ol/js/ol.js"></script>
-    <!-- <script type="text/javascript" src="static/lib/ol/js/ol-debug.js"></script> -->
+        <!-- OpenLayers / JS -->
+        <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+        <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+        <script type="text/javascript" src="static/lib/ol/js/ol.js"></script>
+        <!-- <script type="text/javascript" src="static/lib/ol/js/ol-debug.js"></script> -->
 
 
-    <!-- My CSS -->
-    <link href="static/css/main.css" type="text/css" rel="stylesheet">
+        <!-- My CSS -->
+        <link href="static/css/main.css" type="text/css" rel="stylesheet">
 
-    <!-- My JS -->
-    <script type="text/javascript" src="static/js/map_config.js"></script>
-    <script type="text/javascript" src="static/js/crud.js"></script>
-    <script type="text/javascript" src="static/js/main.js"></script>
-  </head>
+        <!-- My JS -->
+        <script type="text/javascript" src="static/js/map_config.js"></script>
+        <script type="text/javascript" src="static/js/crud.js"></script>
+        <script type="text/javascript" src="static/js/main.js"></script>
+    </head>
 
-  <body>
+    <body>
+        <div id="map" class="map"></div>
 
-    <div id="map" class="map"></div>
+        <form id="form_geometry_type" class="form-inline">
+            <label>Geometry type &nbsp;</label>
+            <select id="type">
+                <option value="Point">Point</option>
+                <option value="LineString">LineString</option>
+                <option value="Polygon">Polygon</option>
+            </select>
+        </form>
 
-    <form id="form_geometry_type" class="form-inline">
-      <label>Geometry type &nbsp;</label>
-      <select id="type">
-        <option value="Point">Point</option>
-        <option value="LineString">LineString</option>
-        <option value="Polygon">Polygon</option>
-      </select>
-    </form>
+        <nav id="layers">
+            <ul>
+                <li>
+                    <input type="radio" name="layer" value="osm_maps" checked>
+                    OSM
+                </li>
+                <li>
+                    <input type="radio" name="layer" value="bing_maps">
+                    Bing Maps
+                </li>
+                <!-- <li>
+                    <input type="radio" name="layer" value="pauliceia_ba_municipios">
+                    pauliceia_ba_municipios
+                </li>
+                <li>
+                    <input type="radio" name="layer" value="pauliceia_focos">
+                    pauliceia_focos
+                </li>
+                <li>
+                    <input type="radio" name="layer" value="pauliceia_tab_event">
+                    pauliceia_tab_event
+                </li> -->
+                <!-- <li>
+                    <input type="radio" name="layer" value="sara_brasil_mosaic">
+                    Sara Brasil
+                </li> -->
+            </ul>
+        </nav>
 
-    <nav id="layers">
-			<ul>
-				<li>
-					<input type="radio" name="layer" value="osm_maps" checked>
-					OSM
-				</li>
-				<li>
-					<input type="radio" name="layer" value="bing_maps">
-					Bing Maps
-				</li>
-        <!-- <li>
-					<input type="radio" name="layer" value="geoserver_maps">
-					Geoserver Maps
-				</li> -->
-        <!-- <li>
-					<input type="radio" name="layer" value="sara_brasil_mosaic">
-					Sara Brasil
-				</li> -->
-			</ul>
-		</nav>
+        <div id="div_checkbox_layers">
+            <p>
+                <input type="checkbox" name="chkbx_pauliceia" id="pauliceia_ba_municipios"> pauliceia_ba_municipios
+            </p>
+            <p>
+                <input type="checkbox" name="chkbx_pauliceia" id="pauliceia_focos"> pauliceia_focos
+            </p>
+            <p>
+                <input type="checkbox" name="chkbx_pauliceia" id="pauliceia_tab_event"> pauliceia_tab_event
+            </p>
+        </div>
 
-  </body>
+    </body>
 </html>

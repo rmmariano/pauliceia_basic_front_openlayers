@@ -15,4 +15,20 @@ $(document).ready(function(){
         layer_geoserver_wms_sara_brasil.setVisible(true);
     });
 
+
+    $("#div_checkbox_layers input[type='checkbox']").change(function() {
+        if(this.checked) {
+            console.log("checked: " + this.id);
+        }else{
+            console.log("unchecked: " + this.id);
+        }
+    });
+
+    $('input:checkbox[name=chkbx_pauliceia]:checked').change(function() {
+
+        var check = $(this).val();
+        console.log(check);
+
+    });
+
 });

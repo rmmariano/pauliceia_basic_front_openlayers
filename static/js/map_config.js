@@ -11,13 +11,19 @@ var layer_feature_overlay;
 $(document).ready(function(){
 
   var view = new ol.View({
+
+        // center: ol.proj.transform([6, 49], 'EPSG:4326', 'EPSG:3857'),
+        // projection: 'EPSG:3857',
+
+    //   projection: 'EPSG:4326',
     // brasil inteiro
-    // center: [-6217890.205764902, -1910870.6048274133],
+    center: [-6217890.205764902, -1910870.6048274133],
     // centro SP
-    center: [-5191416.910254965, -2697764.155309246],
+    // center: [-5191416.910254965, -2697764.155309246],
     zoom: 15,
     maxZoom: 18,
-    minZoom: 2
+    minZoom: 2,
+    // projection: 'EPSG:4618'
   });
 
   layer_oms = new ol.layer.Tile({
@@ -65,11 +71,52 @@ $(document).ready(function(){
     visible: true
   });
 
+  //
+
+  layer_geoserver_wms_pauliceia_ba_municipios = new ol.layer.Tile({
+      source: new ol.source.TileWMS({
+          url: 'http://localhost:8080/geoserver/pauliceia/wms',
+          params: {'LAYERS': 'pauliceia:ba_municipios', 'TILED': true},
+          serverType: 'geoserver'
+      }),
+      visible: false,
+      name: 'pauliceia_ba_municipios'
+  });
+
+  layer_geoserver_wms_pauliceia_focos = new ol.layer.Tile({
+      source: new ol.source.TileWMS({
+          url: 'http://localhost:8080/geoserver/pauliceia/wms',
+          params: {'LAYERS': 'pauliceia:focos', 'TILED': true},
+          serverType: 'geoserver'
+      }),
+      visible: false,
+      name: 'pauliceia_focos'
+  });
+
+  layer_geoserver_wms_pauliceia_tab_event= new ol.layer.Tile({
+      source: new ol.source.TileWMS({
+          url: 'http://localhost:8080/geoserver/pauliceia/wms',
+          params: {'LAYERS': 'pauliceia:tab_event', 'TILED': true},
+          serverType: 'geoserver'
+      }),
+      visible: false,
+      name: 'pauliceia_tab_event'
+  });
+
+  //
+
+
   map = new ol.Map({
     // layer_oms fica mais no "fundo"
     // layer_feature_overlay fica mais na "frente"
     layers: [layer_oms, layer_bing_maps, layer_geoserver_wms,
-            layer_geoserver_wms_sara_brasil, layer_feature_overlay],
+
+            layer_geoserver_wms_pauliceia_ba_municipios,
+            layer_geoserver_wms_pauliceia_focos,
+            layer_geoserver_wms_pauliceia_tab_event,
+
+            layer_geoserver_wms_sara_brasil,
+            layer_feature_overlay],
     target: 'map',
     controls: ol.control.defaults().extend([
       // barra de escala (canto inferior esquerdo)
