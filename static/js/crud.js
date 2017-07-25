@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     // MODIFY / UPDATE
     var modify = new ol.interaction.Modify({
-        features: features,
+        features: __FEATURES__,
         // the SHIFT key must be pressed to delete vertices, so
         // that new vertices can be drawn at the same position
         // of existing vertices
@@ -12,7 +12,8 @@ $(document).ready(function(){
                 ol.events.condition.singleClick(event);
         }
     });
-    map.addInteraction(modify);
+    __MAP__.addInteraction(modify);
+
 
     // CREATE / ADD
     var draw;
@@ -20,17 +21,17 @@ $(document).ready(function(){
 
     function addInteraction() {
         draw = new ol.interaction.Draw({
-            features: features,
+            features: __FEATURES__,
             type: /** @type {ol.geom.GeometryType} */ (typeSelect.value)
         });
 
-        map.addInteraction(draw);
+        __MAP__.addInteraction(draw);
     }
 
     // when change the geometry type selected, stop the interaction of
     // the current draw and start the next
     typeSelect.onchange = function() {
-        map.removeInteraction(draw);
+        __MAP__.removeInteraction(draw);
         addInteraction();
     };
 

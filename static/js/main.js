@@ -5,40 +5,17 @@ $(document).ready(function(){
         // This action get the event of the radio button of base map
         // when select it, showing it and hiding the others
 
-        // var layer = $(this).val();
+        var layers_name_option = $(this).val();
 
-        // map.getLayers().getArray().forEach(function(e) {
-        //     var name = e.get('name');
-        //
-        //     if (e.get("always_visible_it")) {}
-        //
-        //     e.setVisible(name == layer);
-        // });
+        for (var i=0; i<__LAYERS_RADIO_BUTTON__.length; i++) {
+            var layer = __LAYERS_RADIO_BUTTON__[i];
 
+            var layers_name = layer.get('name');
 
-        var layers_name = $(this).val();
-
-        // var __layers__ = map.getLayers().getArray();
-        var __layers__ = layers_radio_button;
-
-        for (var i=0; i<__layers__.length; i++) {
-            var layer = __layers__[i];
-
-            var name = layer.get('name');
-
-            // if the layer is to be always visible, so doesn't mess in it
-            // if (layer.get("always_visible_it"))
-            //     continue;
-
-            layer.setVisible(name == layers_name);
-
+            // if the "layer" is the layer chosen on radio button, so
+            // set visible equals true, else set visible equals false
+            layer.setVisible(layers_name == layers_name_option);
         }
-
-
-        // independently of base map, the layer that do creation/modification
-        // of geometry stay visible
-        // layer_feature_overlay.setVisible(true);
-        // layer_geoserver_wms_pauliceia_sara_brasil.setVisible(true);
     });
 
 
@@ -46,13 +23,10 @@ $(document).ready(function(){
         // This action get the event of the checkbox when select or unselect it,
         // so show or hide the layer equivalent
 
-        // this.checked
-        var layers = layers_checkbox;
+        for (var i=0; i<__LAYERS_CHECKBOX__.length; i++) {
+            var layer = __LAYERS_CHECKBOX__[i];
 
-        for (var i=0; i<layers.length; i++) {
-            var layer = layers[i];
-
-            if (layer.getProperties()["name"] == this.id) {
+            if (layer.get("name") == this.id) {
                 // invert the visible: if true will be false, and vice-versa
                 layer.setVisible(!layer.getVisible());
                 break;
